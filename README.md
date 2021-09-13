@@ -10,9 +10,16 @@ This repo contains a sample React Native app to which Detox and React Native Aut
 **Expect**:  Successful Android build.
 **Actual**:  Build error about Auth0 placeholders in the `androidTest` build.
 ```
-> Task :react-native-auth0:processDebugAndroidTestManifest FAILED
-/Users/mparris/dev/breville-companion-app/node_modules/react-native-auth0/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger16326133385671228905.xml Error:
-        Attribute data@host at manifestMerger16326133385671228905.xml requires a placeholder substitution but no value for <auth0Domain> is provided.
-/Users/mparris/dev/breville-companion-app/node_modules/react-native-auth0/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger16326133385671228905.xml Error:
-        Attribute data@scheme at manifestMerger16326133385671228905.xml requires a placeholder substitution but no value for <auth0Scheme> is provided.
+/Users/mparris/dev/mptest/node_modules/react-native-auth0/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger10599473213081257025.xml Error:
+        Attribute data@host at manifestMerger10599473213081257025.xml requires a placeholder substitution but no value for <auth0Domain> is provided.
+/Users/mparris/dev/mptest/node_modules/react-native-auth0/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger10599473213081257025.xml Error:
+        Attribute data@scheme at manifestMerger10599473213081257025.xml requires a placeholder substitution but no value for <auth0Scheme> is provided.
 ```
+### Background
+I created this repro in this order:
+1. `npx react-native init` to create the skeleton app, then verified it built and ran successfully
+2. `npm install --save-dev detox@latest`  (`18.20.3` as of this writing)
+3. Integrated Detox into the Android build using instructions at
+   a. https://github.com/wix/Detox/blob/master/docs/Guide.Jest.md
+   b. https://github.com/wix/Detox/blob/master/docs/Introduction.Android.md
+4. `npm install --save react-native-auth0@latest`  (`2.9.0` as of this writing)
